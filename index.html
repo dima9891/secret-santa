@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Секретный санта</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Секретный санта</h1>
+        <p>Добавьте в поле список людей, по одному в каждой строке и нажмите OK</p>
+        <textarea name="peopleList" id="list" cols="30" rows="10"></textarea>
+        <br>
+        <button class="submit">OK</button>
+        <div class="result"></div>
+    </div>
+    
+    
+    <style>
+        .container {
+            max-width: 320px;
+            margin: 0 auto;
+        }
+        .result, .submit {
+            margin-top: 20px;
+        }
+    </style>
+    <script src="script.js"></script>
+</body>
+</html>

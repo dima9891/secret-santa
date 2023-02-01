@@ -1,8 +1,8 @@
 function secretSanta(list) {
     if (list.length <= 1) {return}
     const basket = []
-    let rand = 0
     const result = []
+    let rand = 0
 
     for (let i = 0; i < list.length; i++) {basket.push(i)}
     for (const [id, man] of list.entries()) {
@@ -25,33 +25,34 @@ function secretSanta(list) {
     return result
 }
 
-function addElement(content) {
+function addElement(content, destination) {
     const newDiv = document.createElement("div")
     const newContent = document.createTextNode(content)
 
     newDiv.appendChild(newContent)
 
-    const currentDiv = document.querySelector('.result')
-    currentDiv.appendChild(newDiv)
+    destination.appendChild(newDiv)
 }
 
 document.querySelector('.submit').addEventListener('click', function() {
-    if (document.querySelector('.result').innerHTML !== '') {
-        document.querySelector('.result').innerHTML = ''
+    const destination = document.querySelector('.result')
+    const listElement = document.querySelector('#list')
+    
+    if (destination.innerHTML !== '') {
+        destination.innerHTML = ''
     }
-    if (document.querySelector('#list').value !== '') {
-        const textArea = document.querySelector('#list').value
-        document.querySelector('#list').value = ''
-        const lines = textArea.split('\n')
-        if(lines[lines.length-1] === '') {
-            lines.pop()
-        }
-        const result = secretSanta(lines)
+    if (listElement.value == '') {return}
 
-        if (result !== undefined) {
-            result.forEach(function(line) {
-                addElement(line)
-            })
-        }
-    }    
+    const lines = listElement.value.split('\n')
+    listElement.value = ''
+
+    if(lines[lines.length-1] === '') {lines.pop()}
+    
+    const result = secretSanta(lines)
+    
+    if(result == undefined) {return}
+
+    result.forEach(function(line) {
+        addElement(line, destination)
+    })  
 })
